@@ -1,0 +1,31 @@
+name: "Semantic Release"
+
+on:
+  push:
+    branches:
+      - disabled_for_this_repo
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Setup Node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - name: "Install dependencies"
+        run: |
+          yarn --frozen-lockfile
+          composer install -0
+      - name: "Make bump.sh executable"
+        run: chmod +x ./scripts/bump.sh
+      - name: "Make plugin file writeable"
+        run: chmod 777 wordpress-plugin.php
+      - name: "Release package"
+        run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

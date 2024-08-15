@@ -1,0 +1,9 @@
+.idea
+.phpcs.cache
+vendor
+node_modules
+yarn-error.log
+.DS_Store
+
+src/assets/css/wordpress-plugin.min.css
+src/assets/css/wordpress-plugin.min.css.map
