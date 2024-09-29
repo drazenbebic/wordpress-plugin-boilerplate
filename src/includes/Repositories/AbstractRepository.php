@@ -4,10 +4,10 @@
 // phpcs:disable Squiz.Commenting.FunctionComment.InvalidTypeHint
 // phpcs:disable WordPress.DB
 
-namespace WordPressPlugin\Repositories;
+namespace WordPressPluginBoilerplate\Repositories;
 
-use WordPressPlugin\AbstractSingleton;
-use WordPressPlugin\Models\ModelInterface;
+use WordPressPluginBoilerplate\AbstractSingleton;
+use WordPressPluginBoilerplate\Models\ModelInterface;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -220,7 +220,7 @@ abstract class AbstractRepository extends AbstractSingleton implements Repositor
 		global $wpdb;
 
 		$sql_query  = "UPDATE $this->table SET ";
-		$sql_query .= $wpdb->prepare( ' updated_at = %s,', gmdate( WPP_DB_DATE_FORMAT ) );
+		$sql_query .= $wpdb->prepare( ' updated_at = %s,', gmdate( WPPB_DB_DATE_FORMAT ) );
 		$sql_query .= $wpdb->prepare( ' updated_by = %d,', get_current_user_id() );
 
 		foreach ( $data as $column => $value ) {
@@ -387,11 +387,11 @@ abstract class AbstractRepository extends AbstractSingleton implements Repositor
 	 */
 	private function get_meta_created(): array {
 		$meta = array(
-			'created_at' => gmdate( WPP_DB_DATE_FORMAT ),
+			'created_at' => gmdate( WPPB_DB_DATE_FORMAT ),
 			'created_by' => get_current_user_id(),
 		);
 
-		return apply_filters( 'wpp_db_meta_created', $meta );
+		return apply_filters( 'wppb_db_meta_created', $meta );
 	}
 
 	/**
@@ -402,11 +402,11 @@ abstract class AbstractRepository extends AbstractSingleton implements Repositor
 	 */
 	private function get_meta_updated(): array {
 		$meta = array(
-			'updated_at' => gmdate( WPP_DB_DATE_FORMAT ),
+			'updated_at' => gmdate( WPPB_DB_DATE_FORMAT ),
 			'updated_by' => get_current_user_id(),
 		);
 
-		return apply_filters( 'wpp_db_meta_created', $meta );
+		return apply_filters( 'wppb_db_meta_created', $meta );
 	}
 
 	/**
@@ -446,8 +446,8 @@ abstract class AbstractRepository extends AbstractSingleton implements Repositor
 							break;
 						case OperatorEnum::BETWEEN:
 							if ( is_string( $values[0] ) && is_string( $values[1] ) ) {
-								$value0  = wpp_clean_string( $values[0] );
-								$value1  = wpp_clean_string( $values[1] );
+								$value0  = wppb_clean_string( $values[0] );
+								$value1  = wppb_clean_string( $values[1] );
 								$result .= $wpdb->prepare( "AND $column BETWEEN %s AND %s ", $value0, $value1 );
 							} elseif ( is_numeric( $values[0] ) && is_numeric( $values[1] ) ) {
 								$value0  = (int) $values[0];

@@ -1,9 +1,9 @@
 <?php
 
-namespace WordPressPlugin\REST;
+namespace WordPressPluginBoilerplate\REST;
 
-use WordPressPlugin\Models\ModelInterface;
-use WordPressPlugin\Repositories\OperatorEnum;
+use WordPressPluginBoilerplate\Models\ModelInterface;
+use WordPressPluginBoilerplate\Repositories\OperatorEnum;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Request;
@@ -21,7 +21,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 * AbstractRestController constructor.
 	 */
 	public function __construct() {
-		$this->settings = (array) get_option( 'wpp_settings_general' );
+		$this->settings = (array) get_option( 'wppb_settings_general' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 		return new WP_REST_Response(
 			array(
 				'success' => $success,
-				'data'    => apply_filters( 'wpp_rest_api_pre_response', $data, $request_method, $route ),
+				'data'    => apply_filters( 'wppb_rest_api_pre_response', $data, $request_method, $route ),
 			),
 			$code
 		);
@@ -94,7 +94,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 		return array_reduce(
 			explode( ',', $order_by ),
 			function ( $result, $column ) {
-				$value = wpp_clean_string( $column );
+				$value = wppb_clean_string( $column );
 
 				if ( str_starts_with( $value, '-' ) ) {
 					$key = substr( $value, 1 );
@@ -132,9 +132,9 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 * @return bool
 	 */
 	protected function is_route_enabled( array $settings, string $route_id ): bool {
-		if ( ! array_key_exists( 'wpp_enabled_api_routes', $settings )
-			|| ! array_key_exists( $route_id, $settings['wpp_enabled_api_routes'] )
-			|| ! $settings['wpp_enabled_api_routes'][ $route_id ]
+		if ( ! array_key_exists( 'wppb_enabled_api_routes', $settings )
+			|| ! array_key_exists( $route_id, $settings['wppb_enabled_api_routes'] )
+			|| ! $settings['wppb_enabled_api_routes'][ $route_id ]
 		) {
 			return false;
 		}
@@ -149,7 +149,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 */
 	protected function route_disabled_error(): WP_Error {
 		return new WP_Error(
-			'wpp_rest_route_disabled_error',
+			'wppb_rest_route_disabled_error',
 			'This route is disabled via the plugin settings.',
 			array( 'status' => 404 )
 		);
@@ -164,7 +164,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 * @return bool|WP_Error
 	 */
 	public function permission_callback( WP_REST_Request $request ) {
-		$error = apply_filters( 'wpp_rest_permission_callback', $request );
+		$error = apply_filters( 'wppb_rest_permission_callback', $request );
 
 		if ( $error instanceof WP_Error ) {
 			return $error;
@@ -183,7 +183,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	protected function current_user_can( string $cap ): bool {
 		$has_permission = current_user_can( $cap );
 
-		return apply_filters( 'wpp_rest_capability_check', $has_permission, $cap );
+		return apply_filters( 'wppb_rest_capability_check', $has_permission, $cap );
 	}
 
 	/**

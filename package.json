@@ -1,7 +1,7 @@
 {
-  "name": "@drazenbebic/wordpress-plugin",
+  "name": "@drazenbebic/wordpress-plugin-boilerplate",
   "version": "0.1.0",
-  "description": "Template for a WordPress Plugin",
+  "description": "Boilerplate for a WordPress Plugin",
   "scripts": {
     "prepare": "husky",
     "lint": "eslint src/assets/js/**",

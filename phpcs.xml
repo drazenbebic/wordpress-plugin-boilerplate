@@ -5,7 +5,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
 >
-    <description>WordPress Plugin Coding Standard</description>
+    <description>WordPress Plugin Boilerplate Coding Standard</description>
 
     <!-- Set the coding standard -->
     <rule ref="WordPress">
@@ -23,7 +23,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="wordpress-plugin"/>
+                <element value="wordpress-plugin-boilerplate"/>
             </property>
         </properties>
     </rule>
@@ -32,13 +32,13 @@
     <rule ref="WordPress.WP.Capabilities">
         <properties>
             <property name="custom_capabilities" type="array">
-                <element value="manage_wordpress-plugin"/>
+                <element value="manage_wordpress_plugin_boilerplate"/>
             </property>
         </properties>
     </rule>
 
     <!-- Set the target directories -->
-    <file>wordpress-plugin.php</file>
+    <file>wordpress-plugin-boilerplate.php</file>
     <file>src/functions</file>
     <file>src/includes</file>
     <file>src/templates</file>

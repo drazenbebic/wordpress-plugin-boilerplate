@@ -1,9 +1,9 @@
 <?php
 // phpcs:disable Generic.PHP.Syntax.PHPSyntax
 
-namespace WordPressPlugin\Repositories;
+namespace WordPressPluginBoilerplate\Repositories;
 
-use WordPressPlugin\Models\ModelInterface;
+use WordPressPluginBoilerplate\Models\ModelInterface;
 
 defined( 'ABSPATH' ) || exit;
 

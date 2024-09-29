@@ -1,5 +1,5 @@
 {
-  "name": "drazenbebic/wordpress-plugin",
+  "name": "drazenbebic/wordpress-plugin-boilerplate",
   "version": "0.1.0",
   "type": "wordpress-plugin",
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WordPressPlugin\\": "src/includes/"
+      "WordPressPluginBoilerplate\\": "src/includes/"
     }
   },
   "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace WordPressPlugin;
+namespace WordPressPluginBoilerplate;
 
 defined( 'ABSPATH' ) || exit;
 

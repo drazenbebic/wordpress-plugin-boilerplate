@@ -1,6 +1,6 @@
 <?php
 
-namespace WordPressPlugin\Models;
+namespace WordPressPluginBoilerplate\Models;
 
 use JsonSerializable;
 

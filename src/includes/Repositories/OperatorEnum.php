@@ -1,6 +1,6 @@
 <?php
 
-namespace WordPressPlugin\Repositories;
+namespace WordPressPluginBoilerplate\Repositories;
 
 use ReflectionClass;
 
