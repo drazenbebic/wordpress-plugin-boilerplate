@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "lint": "./vendor/bin/phpcs --standard=phpcs.xml",
-    "lint-fix": "./vendor/bin/phpcbf --standard=phpcs.xml"
+    "lint-fix": "./vendor/bin/phpcbf --standard=phpcs.xml",
+    "post-install-cmd": [
+      "chmod +x ./scripts/download_wordpress.sh",
+      "./scripts/download_wordpress.sh"
+    ]
   },
   "autoload": {
     "psr-4": {
@@ -26,8 +30,11 @@
     }
   },
   "require-dev": {
-    "wp-coding-standards/wpcs": "^3.0",
+    "wp-coding-standards/wpcs": "^3.1",
     "php-stubs/wordpress-globals": "^v0.2.0",
-    "php-stubs/wordpress-stubs": "^v6.6.0"
+    "php-stubs/wordpress-stubs": "^v6.7"
+  },
+  "require": {
+    "php": "^8.3"
   }
 }

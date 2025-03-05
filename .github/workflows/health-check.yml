@@ -25,7 +25,7 @@ jobs:
       - name: "Install dependencies"
         run: |
           yarn --frozen-lockfile
-          composer install -o
+          composer install -o --no-scripts
       - name: "Lint"
         run: |
           yarn lint

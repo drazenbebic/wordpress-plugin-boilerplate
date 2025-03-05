@@ -20,11 +20,11 @@ jobs:
       - name: "Install dependencies"
         run: |
           yarn --frozen-lockfile
-          composer install -0
+          composer install -o --no-scripts
       - name: "Make bump.sh executable"
         run: chmod +x ./scripts/bump.sh
       - name: "Make plugin file writeable"
-        run: chmod 777 wordpress-plugin.php
+        run: chmod 777 wordpress-plugin-boilerplate.php
       - name: "Release package"
         run: yarn semantic-release
         env:

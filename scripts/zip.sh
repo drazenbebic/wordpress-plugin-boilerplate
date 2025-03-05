@@ -2,10 +2,12 @@
 
 version=$(jq -r .version package.json)
 
-zip -r wordpress-plugin-"$version".zip \
+mkdir -p releases
+
+zip -r releases/wordpress-plugin-boilerplate-"$version".zip \
   src \
   vendor \
-  wordpress-plugin.php \
+  wordpress-plugin-boilerplate.php \
   CHANGELOG.md \
   composer.json \
   composer.lock \
