@@ -118,9 +118,7 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 * @return bool
 	 */
 	protected function is_json( string $value ): bool {
-		json_decode( $value );
-
-		return ( json_last_error() === JSON_ERROR_NONE );
+		return json_validate( $value );
 	}
 
 	/**
@@ -161,9 +159,9 @@ abstract class AbstractRestController extends WP_REST_Controller {
 	 *
 	 * @param WP_REST_Request $request The WordPress REST Request object.
 	 *
-	 * @return bool|WP_Error
+	 * @return WP_Error|true
 	 */
-	public function permission_callback( WP_REST_Request $request ) {
+	public function permission_callback( WP_REST_Request $request ): WP_Error|true {
 		$error = apply_filters( 'wppb_rest_permission_callback', $request );
 
 		if ( $error instanceof WP_Error ) {
